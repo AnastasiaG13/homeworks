@@ -12,3 +12,7 @@ second = my_favorite_songs.split(',') [1]
 last = my_favorite_songs.split(',') [-1]
 prelast = my_favorite_songs.split(',') [-2]
 print(first, last, second, prelast)
+
+# Отлично, ну только единственное что, можно немного сократить запись и написать списковое включение
+
+print([my_favorite_songs.split(', ')[i] for i in [0, -1, 1, -2]])
