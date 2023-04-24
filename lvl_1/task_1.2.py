@@ -73,3 +73,48 @@ print("Из словаря выбраны песни", songs, "и они зву�
 # Дополнительно 
 # Пункт D.
 # Переведите минуты и секунды в формат времени. Используйте модуль datetime 
+
+# Да! Интересное решение! У меня был вот такой вариант
+# ###################### Решение ######################
+
+# Импорты
+from random import sample
+from datetime import timedelta
+from math import modf
+
+# Пункт А
+time = my_favorite_songs[0][1] + my_favorite_songs[2][1] + my_favorite_songs[4][1]
+print(f'Пункт А: Три песни звучат {time} минут.')
+
+# Пункт С(А)
+time = 0
+for song in sample(my_favorite_songs, 3):
+    time += song[1]
+
+print(f'Пункт C(A): Три песни звучат {round(time, 2)}')
+
+# Пункт D(А)
+total_time = timedelta()
+for song in sample(my_favorite_songs, 3):
+    s, m = modf(song[1])
+    total_time += timedelta(minutes=int(m), seconds=int(s * 100))
+
+print(f'Пункт D(A): Три песни звучат {total_time}')
+
+
+# Пункт B
+time = my_favorite_songs_dict['Waste a Moment'] + my_favorite_songs_dict['Staying\' Alive'] + my_favorite_songs_dict['Easy']
+print(f'Пункт B: Три песни звучат {time} минут.')
+
+# Пункт C(B)
+time = 0
+for song in sample(tuple(my_favorite_songs_dict), 3):
+    time += my_favorite_songs_dict[song]
+
+print(f'Пункт C(B): Три песни звучат {round(time, 2)}')
+
+# Пункт D(B)
+total_time = timedelta()
+for song in sample(tuple(my_favorite_songs_dict), 3):
+    s, m = modf(my_favorite_songs_dict[song])
+    total_time += timedelta(minutes=int(m), seconds=int(s * 100))
