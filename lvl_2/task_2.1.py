@@ -10,8 +10,22 @@
 # * [5]                             -> min = 5, max = 5
 # функции sorted, max и min использовать нельзя!
 
+n = [4,6,2,1,9,63,-134,566] 
+
 def minimum(arr):
-    pass
+    min = arr[0]
+    for i in arr:
+        if i < min:
+            min = i
+    return min
 
 def maximum(arr):
-    pass
+    max = arr[0]
+    for i in arr:
+        if i > max:
+            max = i
+    return max
+
+print(f"max = {maximum(n)}, min = {minimum(n)}")
+
+
