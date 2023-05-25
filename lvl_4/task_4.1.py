@@ -37,16 +37,16 @@ def create_tbl_School():
     connection.commit()
     connection.close()
 
-# При необходимости (Удаление таблицы Schools):
-def delete_tbl_Schools():
+# При необходимости (Удаление таблицы School):
+def delete_tbl_School():
     connection = sqlite3.connect('teachers.db')
     cursor = connection.cursor()
-    cursor.execute('DROP TABLE IF EXISTS Schools')
+    cursor.execute('DROP TABLE IF EXISTS School')
     connection.commit()
     connection.close()
 
 # Вставка значений в таблицу School
-def add_Schools():
+def add_School():
     connection = sqlite3.connect('teachers.db')
     cursor = connection.cursor()
     sqlquery = """INSERT INTO School (School_Id , School_Name , Place_Count )
@@ -96,22 +96,26 @@ def add_Students():
 def get_student(student_id):
   connection = sqlite3.connect("teachers.db")
   cursor = connection.cursor()
-  # Чтобы соответствовать заданию, запрос нужно сделать так (но почему-то не работает):
-  #query = "SELECT Students.Student_id, Students.Student_Name, Students.School_Id, chools.School_Name FROM School JOIN Students ON School.School_Id = Students.School_Id WHERE Students.Student_id = ?"
-  #Работает так
-  query = "SELECT Students.Student_id, Students.Student_Name, Students.School_Id FROM Students JOIN School ON School.School_Id = Students.School_Id WHERE Students.Student_id = ?"
-  # Или так
-  #query = "SELECT * FROM Students JOIN School ON School.School_Id = Students.School_Id WHERE Students.Student_id = ?"
+  query = "SELECT Students.Student_id, Students.Student_Name, Students.School_Id, School.School_Name FROM School JOIN Students ON School.School_Id = Students.School_Id WHERE Students.Student_id = ?"
   cursor.execute(query,(student_id,))
   records = cursor.fetchall()
   print(records)
   for row in records:
     print()
 
+def get_all():
+  connection = sqlite3.connect("teachers.db")
+  cursor = connection.cursor()
+  query = "SELECT * FROM Schools"
+  cursor.execute(query)
+  records = cursor.fetchall()
+  print(records)
+
+#delete_tbl_School()
 #create_tbl_School()
-#delete_tbl_Schools()
-#add_Schools()
-#create_tbl_Students()
+#add_School()
 #delete_tbl_Students()
+#create_tbl_Students()
 #add_Students()
 get_student(202)
+#get_all()
